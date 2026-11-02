@@ -2,167 +2,222 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AbroadGuide — Project 2 report</title>
+<title>The Librarian — Report</title>
 <style>
-  @page { size: A4; margin: 16mm 17mm 16mm 17mm; }
-  :root { --ink: #1b2a47; --muted: #5a6478; --rule: #c9d3cd; --tint: #eef3f0; --accent: #2f6b4f; }
+  @page { size: A4; margin: 15mm 17mm; }
+  :root { --ink: #1b2a47; --muted: #5d6779; --rule: #d3dbd6; --tint: #eef3f0; --accent: #2f6b4f; --soft: #a9c1b6; }
   * { box-sizing: border-box; }
-  body { font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); font-size: 10.2pt; line-height: 1.45; margin: 0; }
-  h1 { font-size: 21pt; margin: 0 0 2mm; letter-spacing: -0.3px; }
-  h2 { font-size: 12.5pt; margin: 6mm 0 2mm; padding-bottom: 1mm; border-bottom: 1.5px solid var(--accent); }
-  h3 { font-size: 10.5pt; margin: 3.5mm 0 1mm; }
-  p { margin: 0 0 2.2mm; }
-  ul { margin: 0 0 2.2mm; padding-left: 5mm; }
-  li { margin-bottom: 0.8mm; }
-  .sub { color: var(--muted); margin-bottom: 1mm; }
-  .meta { display: grid; grid-template-columns: 26mm 1fr; gap: 0.6mm 3mm; font-size: 9.6pt; margin: 3mm 0 1mm; }
-  .meta b { color: var(--muted); font-weight: 600; }
-  table { border-collapse: collapse; width: 100%; margin: 1.5mm 0 3mm; font-size: 9.4pt; }
-  th, td { text-align: left; padding: 1.3mm 2mm; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  body { font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); font-size: 10.3pt; line-height: 1.45; margin: 0; }
+  .cover { height: 260mm; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; break-after: page; }
+  .cover h1 { font-size: 30pt; margin: 0 0 3mm; letter-spacing: -0.5px; }
+  .cover .tag { font-size: 12pt; color: var(--muted); margin-bottom: 18mm; }
+  .cover .course { font-weight: 600; margin-bottom: 10mm; }
+  .cover .names { line-height: 1.9; margin-bottom: 14mm; }
+  .cover .links { font-size: 9.5pt; line-height: 1.8; }
+  .cover .links b { color: var(--muted); font-weight: 600; }
+  h2 { font-size: 13pt; margin: 5mm 0 2mm; padding-bottom: 1mm; border-bottom: 1.5px solid var(--accent); }
+  h2:first-of-type { margin-top: 0; }
+  p { margin: 0 0 2mm; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; }
+  li { margin-bottom: 0.6mm; }
+  figure { margin: 2mm 0 3mm; break-inside: avoid; }
+  figcaption { font-size: 8.8pt; color: var(--muted); margin-top: 1mm; }
+  svg text { font-family: "Segoe UI", Arial, sans-serif; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 2mm 0 3mm; }
+  .stat { background: var(--tint); border-radius: 2mm; padding: 2mm 3mm; }
+  .stat b { display: block; font-size: 15pt; }
+  .stat span { font-size: 8.6pt; color: var(--muted); }
+  table { border-collapse: collapse; width: 100%; font-size: 9.3pt; margin: 1mm 0 2mm; }
+  th, td { text-align: left; padding: 1.1mm 2mm; border-bottom: 1px solid var(--rule); }
   th { background: var(--tint); font-weight: 600; }
-  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  tr.best td { font-weight: 600; }
-  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2mm; margin: 2mm 0 3mm; font-size: 8.8pt; }
-  .flow span { border: 1px solid var(--rule); background: var(--tint); border-radius: 1.5mm; padding: 1mm 2mm; }
-  .flow i { font-style: normal; color: var(--muted); }
-  .key { background: var(--tint); border-left: 3px solid var(--accent); padding: 2mm 3mm; margin: 2mm 0 3mm; }
-  .small { font-size: 8.8pt; color: var(--muted); }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
-  .avoid { break-inside: avoid; }
-  code { font-family: Consolas, monospace; font-size: 8.9pt; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; align-items: start; }
+  .key { background: var(--tint); border-left: 3px solid var(--accent); padding: 2mm 3mm; margin: 1mm 0 2mm; }
+  .page { break-before: page; }
 </style>
 </head>
 <body>
 
-<h1>AbroadGuide</h1>
-<div class="sub">A cited question-answering service on studying abroad, for Tunisian students · CS496 AI Engineering, Project 2</div>
-<div class="meta">
-  <b>Team</b><span>Oussama Sfar, Faten Toujani, Ines Turki, Feriel Charrad</span>
-  <b>Live service</b><span>https://sfaroussama9--librarian-web.us-east.modal.run</span>
-  <b>Repository</b><span>https://github.com/SfarOussama9/abroad-guide</span>
+<section class="cover">
+  <h1>The Librarian</h1>
+  <div class="tag">A cited question-answering service for Tunisian students going abroad</div>
+  <div class="course">CS496 AI Engineering · Project 2</div>
+  <div class="names">Oussama Sfar<br>Faten Toujani<br>Ines Turki<br>Feriel Charrad</div>
+  <div class="links">
+    <b>Repository</b><br>https://github.com/SfarOussama9/the-librarian<br>
+    <b>Live service</b><br>https://sfaroussama9--librarian-web.us-east.modal.run
+  </div>
+</section>
+
+<h2>1. Overview</h2>
+<p>The Librarian answers questions from Tunisian students preparing to study in <b>France, Germany, Canada or
+an Erasmus+ programme</b>: deadlines, fees, required amounts, documents, scholarships and work rights. It answers
+<b>only from official documents</b>, cites every claim, and says <b>"I don't know"</b> when the documents don't answer.</p>
+<div class="stats">
+  <div class="stat"><b>281</b><span>official documents, 11 publishers (Campus France, DAAD, IRCC, EU…)</span></div>
+  <div class="stat"><b>≈251k</b><span>words, French and English (266 pages, 15 PDFs)</span></div>
+  <div class="stat"><b>2,200</b><span>chunks of ~150 words</span></div>
+  <div class="stat"><b>125</b><span>eval questions: 110 answerable, 15 "I don't know"</span></div>
 </div>
 
-<h2>1. The corpus and its users</h2>
-<p><b>Users.</b> Tunisian students (from the baccalauréat to the PhD) preparing to study in France, Germany, Canada or
-in an Erasmus+ programme. Their questions have precise, checkable answers: deadlines, fees, required amounts,
-documents, eligibility and work rights. A wrong answer, such as an outdated blocked-account amount, can cost someone a visa.</p>
-<p><b>Corpus.</b> 281 official documents (266 web pages, 15 PDFs, ≈251,000 words, about 500 pages) from 11 publishers:
-Campus France Tunisie, Campus France, France-Visas, DAAD and its 88-programme scholarship database, DAAD Tunisie,
-the German embassy in Tunis, the Federal Foreign Office, IRCC, EduCanada, the European Commission and the Erasmus+ office in
-Tunisia. It is in French and English, all public, and contains no personal data. Every document is listed in <code>corpus/sources.toml</code>
-and recorded in a manifest (URL, date, method, checksum).</p>
-<p><b>Evaluation set.</b> 125 questions (58 in French, 67 in English): 110 answerable and 15 that should get "I don't know".
-27 are cross-lingual, and some involve conflicting or outdated sources.
-Each stores its answer and an exact quote from the source document, which a script checks against the documents.
-All were reviewed by the team, and 26 of the hardest were checked against the original pages. We split them into dev (90) and test (35); chunking and retrieval settings were tuned on dev.</p>
+<h2>2. Architecture</h2>
+<figure>
+<svg viewBox="0 0 700 250" width="100%" role="img" aria-label="System architecture">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5d6779"/></marker>
+  </defs>
+  <!-- offline -->
+  <text x="0" y="14" font-size="11" font-weight="600" fill="#5d6779">Offline: build the index (once)</text>
+  <g font-size="10.5" fill="#1b2a47">
+    <rect x="0" y="24" width="150" height="46" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="75" y="43" text-anchor="middle" font-weight="600">Collect</text>
+    <text x="75" y="59" text-anchor="middle" font-size="9.5" fill="#5d6779">281 web pages + PDFs</text>
+    <rect x="183" y="24" width="150" height="46" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="258" y="43" text-anchor="middle" font-weight="600">Clean</text>
+    <text x="258" y="59" text-anchor="middle" font-size="9.5" fill="#5d6779">Markdown + publication dates</text>
+    <rect x="366" y="24" width="150" height="46" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="441" y="43" text-anchor="middle" font-weight="600">Chunk</text>
+    <text x="441" y="59" text-anchor="middle" font-size="9.5" fill="#5d6779">150 words, 25 overlap</text>
+    <rect x="549" y="24" width="151" height="46" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="624" y="43" text-anchor="middle" font-weight="600">Index</text>
+    <text x="624" y="59" text-anchor="middle" font-size="9.5" fill="#5d6779">BM25 + e5 vectors (NumPy)</text>
+  </g>
+  <g stroke="#5d6779" stroke-width="1.3" marker-end="url(#a)">
+    <line x1="152" y1="47" x2="181" y2="47"/><line x1="335" y1="47" x2="364" y2="47"/><line x1="518" y1="47" x2="547" y2="47"/>
+  </g>
+  <!-- index feeds search -->
+  <path d="M624 72 L624 92 L165 92 L165 128" fill="none" stroke="#a9c1b6" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#a)"/>
 
-<h2>2. Pipeline design</h2>
-<div class="flow">
-  <span>Fetch + clean<br><i>per-site selectors → Markdown</i></span>›
-  <span>Chunk<br><i>150 words, 25 overlap</i></span>›
-  <span>BM25 + e5 vectors<br><i>top 50 each</i></span>›
-  <span>RRF fusion<br><i>k = 60</i></span>›
-  <span>Cross-encoder<br><i>reranks top 20</i></span>›
-  <span>Top 4 chunks<br><i>≈500 words</i></span>›
-  <span>gpt-5.4-nano<br><i>JSON: answer, cited</i></span>
-</div>
+  <!-- online -->
+  <text x="0" y="114" font-size="11" font-weight="600" fill="#5d6779">Online: answer a question</text>
+  <g font-size="10.5" fill="#1b2a47">
+    <rect x="0" y="130" width="78" height="92" rx="6" fill="#ffffff" stroke="#1b2a47"/>
+    <text x="39" y="170" text-anchor="middle" font-weight="600">Question</text>
+    <text x="39" y="186" text-anchor="middle" font-size="9.5" fill="#5d6779">FR / EN</text>
+
+    <rect x="104" y="130" width="122" height="40" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="165" y="147" text-anchor="middle" font-weight="600">BM25</text>
+    <text x="165" y="161" text-anchor="middle" font-size="9.5" fill="#5d6779">keywords · top 50</text>
+    <rect x="104" y="182" width="122" height="40" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="165" y="199" text-anchor="middle" font-weight="600">multilingual-e5</text>
+    <text x="165" y="213" text-anchor="middle" font-size="9.5" fill="#5d6779">meaning · top 50</text>
+
+    <rect x="252" y="150" width="92" height="52" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="298" y="172" text-anchor="middle" font-weight="600">RRF fusion</text>
+    <text x="298" y="187" text-anchor="middle" font-size="9.5" fill="#5d6779">k = 60 · top 20</text>
+
+    <rect x="370" y="150" width="112" height="52" rx="6" fill="#2f6b4f" stroke="#2f6b4f"/>
+    <text x="426" y="167" text-anchor="middle" font-weight="600" fill="#ffffff">Reranker</text>
+    <text x="426" y="181" text-anchor="middle" font-size="9.5" fill="#dfeae4">bge-reranker-v2-m3</text>
+    <text x="426" y="194" text-anchor="middle" font-size="9.5" fill="#dfeae4">top 20 → top 4</text>
+
+    <rect x="508" y="150" width="96" height="52" rx="6" fill="#eef3f0" stroke="#a9c1b6"/>
+    <text x="556" y="172" text-anchor="middle" font-weight="600">gpt-5.4-nano</text>
+    <text x="556" y="187" text-anchor="middle" font-size="9.5" fill="#5d6779">JSON, [S#] citations</text>
+
+    <rect x="630" y="130" width="70" height="92" rx="6" fill="#ffffff" stroke="#1b2a47"/>
+    <text x="665" y="166" text-anchor="middle" font-weight="600">Answer</text>
+    <text x="665" y="181" text-anchor="middle" font-size="9.5" fill="#5d6779">+ sources</text>
+    <text x="665" y="195" text-anchor="middle" font-size="9.5" fill="#5d6779">or "I don't</text>
+    <text x="665" y="207" text-anchor="middle" font-size="9.5" fill="#5d6779">know"</text>
+  </g>
+  <g stroke="#5d6779" stroke-width="1.3" fill="none" marker-end="url(#a)">
+    <line x1="80" y1="150" x2="102" y2="150"/><line x1="80" y1="202" x2="102" y2="202"/>
+    <path d="M228 150 L240 150 L240 168 L250 168"/><path d="M228 202 L240 202 L240 184 L250 184"/>
+    <line x1="346" y1="176" x2="368" y2="176"/><line x1="484" y1="176" x2="506" y2="176"/><line x1="606" y1="176" x2="628" y2="176"/>
+  </g>
+  <text x="350" y="244" text-anchor="middle" font-size="9.5" fill="#5d6779">Search and reranking run locally on CPU · only the answer step calls OpenAI · served by FastAPI on Modal</text>
+</svg>
+<figcaption>Figure 1. System architecture.</figcaption>
+</figure>
 <ul>
-  <li><b>Cleaning.</b> One content selector per publisher keeps headings, lists and tables as Markdown. PDFs are read page by page
-  with running headers removed. Publication dates are extracted for 80 documents and used to prefer newer sources.</li>
-  <li><b>Chunking.</b> Units (heading, paragraph, list, table) are packed into ≈150-word chunks. Headings are never left at the end of a chunk,
-  and tables are split between rows with their header repeated. Each chunk keeps its URL, title, heading path, country, topic, language,
-  date and PDF page. The size was tested (150 vs 250 vs 400 words at equal context): 150 gave the best recall (0.886 vs 0.873 vs 0.823 at 500 words).</li>
-  <li><b>Index.</b> BM25 with a French/English tokenizer that folds accents, plus <code>multilingual-e5-small</code> vectors in a NumPy file.
-  2,200 vectors are searched exactly in under 10 ms; a vector database would add a server for no gain at this size.</li>
-  <li><b>Retrieval.</b> Hybrid search (Reciprocal Rank Fusion), metadata filters (country, topic, language), then
-  <code>bge-reranker-v2-m3</code> (int8) on the top 20. A depth of 10 was 2× faster but lost 7.6 points of recall@3.</li>
-  <li><b>Generation.</b> The model answers only from the numbered sources, puts <code>[S#]</code> after every factual sentence,
-  and answers in the question's language. For the same value in the same situation the newest dated source wins and the older figure is mentioned.
-  Structured output (<code>answer</code>, <code>answerable</code>, <code>sources_used</code>) makes "I don't know" a scorable flag and maps
-  each citation to a URL and page.</li>
-  <li><b>Service.</b> FastAPI with a streamed web front end, deployed on Modal (4 vCPU, scales to zero). It has a cache for repeated questions,
-  per-visitor rate limits and anonymous logs.</li>
+  <li><b>Chunking:</b> documents are split by heading, paragraph, list and table, so tables keep their header row. Each chunk keeps its URL, title, country, language, date and PDF page. We tested 150, 250 and 400 words; 150 found the right passage most often.</li>
+  <li><b>Index:</b> 2,200 vectors are searched exactly in under 10 ms from a NumPy file, so no vector database is needed at this size.</li>
+  <li><b>Generation:</b> the model answers only from the 4 chunks, cites <code>[S#]</code> after each fact, answers in the question's language, and prefers the newest dated source when two sources disagree.</li>
 </ul>
 
-<h2>3. Retrieval results and ablation</h2>
-<p>A retrieved chunk counts as a hit if it comes from the gold document and contains the gold quote, so the metric doesn't depend on chunk IDs.
-All 110 answerable questions, final index:</p>
-<table class="avoid"><tr><th>Setup</th><th class="n">recall@1</th><th class="n">recall@3</th><th class="n">recall@5</th><th class="n">recall@10</th><th class="n">MRR@10</th><th class="n">search p95</th></tr>
-<tr><td>BM25 only</td><td class="n">0.382</td><td class="n">0.555</td><td class="n">0.655</td><td class="n">0.736</td><td class="n">0.496</td><td class="n"><1 ms</td></tr>
-<tr><td>Vector only</td><td class="n">0.527</td><td class="n">0.645</td><td class="n">0.718</td><td class="n">0.809</td><td class="n">0.612</td><td class="n">10 ms</td></tr>
-<tr><td>Hybrid (RRF)</td><td class="n">0.455</td><td class="n">0.627</td><td class="n">0.727</td><td class="n">0.809</td><td class="n">0.561</td><td class="n">10 ms</td></tr>
-<tr class="best"><td>Hybrid + reranker</td><td class="n">0.664</td><td class="n">0.845</td><td class="n">0.882</td><td class="n">0.891</td><td class="n">0.755</td><td class="n">7.8 s</td></tr>
+<h2 class="page">3. Results</h2>
+<div class="row">
+<figure>
+<svg viewBox="0 0 330 168" width="100%" role="img" aria-label="Recall at 3 by retrieval setup">
+  <text x="0" y="12" font-size="11" font-weight="600" fill="#1b2a47">Retrieval: recall@3 (110 questions)</text>
+  <g font-size="10" fill="#1b2a47">
+    <text x="108" y="44" text-anchor="end">Keyword (BM25)</text>
+    <text x="108" y="76" text-anchor="end">Vector (e5)</text>
+    <text x="108" y="108" text-anchor="end">Hybrid (RRF)</text>
+    <text x="108" y="140" text-anchor="end" font-weight="600">Hybrid + reranker</text>
+  </g>
+  <line x1="116" y1="24" x2="116" y2="152" stroke="#c9d3cd"/>
+  <g>
+    <rect x="116" y="31" width="110" height="18" rx="3" fill="#a9c1b6"/>
+    <rect x="116" y="63" width="128" height="18" rx="3" fill="#a9c1b6"/>
+    <rect x="116" y="95" width="124" height="18" rx="3" fill="#a9c1b6"/>
+    <rect x="116" y="127" width="168" height="18" rx="3" fill="#2f6b4f"/>
+  </g>
+  <g font-size="10" fill="#1b2a47">
+    <text x="231" y="44">0.555</text><text x="249" y="76">0.645</text><text x="245" y="108">0.627</text>
+    <text x="289" y="140" font-weight="600">0.845</text>
+  </g>
+</svg>
+<figcaption>Figure 2. Ablation. The reranker adds +22 points over hybrid search.</figcaption>
+</figure>
+<div>
+<table>
+  <tr><th>Answers (125 questions, mean of 3 runs)</th><th class="n">Final</th></tr>
+  <tr><td><b>Accuracy</b></td><td class="n"><b>90.8%</b></td></tr>
+  <tr><td>Faithfulness (claims supported by sources)</td><td class="n">96.2%</td></tr>
+  <tr><td>Citation accuracy</td><td class="n">94.6%</td></tr>
+  <tr><td>"I don't know" on unanswerable questions</td><td class="n">97.8%</td></tr>
 </table>
+<p style="font-size:9pt;color:#5d6779">Graded by an LLM judge (gpt-5.4-mini) against reference answers and sources; we hand-checked 15 verdicts and agreed with 14.</p>
+</div>
+</div>
 <ul>
-  <li><b>Hybrid alone is not better than vectors alone</b> (recall@5 0.727 vs 0.718, recall@3 0.627 vs 0.645). Fusing in BM25 adds candidates with exact names and codes (KOSPIE, VLS-TS) that the reranker then promotes.</li>
-  <li><b>The reranker is the largest gain</b> (+21.8 points of recall@3 over hybrid), at the cost of seconds of CPU per question (p95 7.8 s in this run).</li>
-  <li>Most misses are <b>cross-lingual</b>: a French question whose answer is only on an English page (IRCC, DAAD).</li>
+  <li><b>The reranker is the largest gain.</b> Hybrid search usually finds the right chunk somewhere in its top 20; the cross-encoder, reading question and chunk together, moves it into the top 3.</li>
+  <li><b>Hybrid alone is not better than vectors alone,</b> but BM25 brings exact names and codes (KOSPIE, VLS-TS) into the candidates the reranker sees.</li>
 </ul>
 
-<h2>4. Generation results</h2>
-<p>Every answer was graded by an LLM judge (<code>gpt-5.4-mini</code>) against the gold answer and the chunks the model saw.
-Accuracy counts a correct answer (a partially correct one scores 0.5) or a correct "I don't know". The table gives the mean of 3 runs on all 125 questions.
-One run varies by up to 3 points.</p>
-<div class="avoid">
-<table>
-  <tr><th>Metric</th><th class="n">Week 7 (gpt-5.4-mini)</th><th class="n">Final (gpt-5.4-nano)</th></tr>
-  <tr class="best"><td>Accuracy (all 125 questions)</td><td class="n">92.7%</td><td class="n">90.8%</td></tr>
-  <tr><td>Faithfulness (every claim supported by a cited chunk)</td><td class="n">96.8%</td><td class="n">96.2%</td></tr>
-  <tr><td>Citation accuracy (the cited chunk says it)</td><td class="n">95.5%</td><td class="n">94.6%</td></tr>
-  <tr><td>"I don't know" on unanswerable questions</td><td class="n">100%</td><td class="n">97.8%</td></tr>
-  <tr><td>Wrong "I don't know" on answerable questions</td><td class="n">6.4%</td><td class="n">5.5%</td></tr>
-</table>
-</div>
-<p><b>Judge check.</b> We compared 15 random verdicts against the answers and their sources: 14 of 15 agree. The one error was lenient
-(q014), so the accuracy numbers are, if anything, slightly optimistic.</p>
-<p><b>What fails.</b> Wrong "I don't know" answers all come from the gold chunk not being retrieved, mostly in cross-lingual cases.
-Two rule fixes came from reading failures. Sources describing <i>different</i> situations (language course vs degree) are not conflicts,
-and a language hint plus a retry stop the model from switching language or script.</p>
+<h2>4. Week 8 optimisation</h2>
+<figure>
+<svg viewBox="0 0 700 120" width="100%" role="img" aria-label="Cost and accuracy before and after">
+  <text x="0" y="12" font-size="11" font-weight="600" fill="#1b2a47">Cost per question (USD)</text>
+  <g font-size="10" fill="#1b2a47">
+    <text x="96" y="42" text-anchor="end">Before (mini)</text>
+    <text x="96" y="82" text-anchor="end" font-weight="600">After (nano)</text>
+  </g>
+  <line x1="104" y1="24" x2="104" y2="96" stroke="#c9d3cd"/>
+  <rect x="104" y="29" width="200" height="20" rx="3" fill="#a9c1b6"/>
+  <rect x="104" y="69" width="62" height="20" rx="3" fill="#2f6b4f"/>
+  <g font-size="10" fill="#1b2a47"><text x="309" y="43">$0.00155</text><text x="171" y="83" font-weight="600">$0.00048  (−69%)</text></g>
 
-<h2>5. Week 8: what we changed and what it saved</h2>
-<p>Search results were computed once and saved, so every setup answers from the same chunks. Each setup ran 3 times on the same 125 questions.</p>
-<div class="avoid">
-<table>
-  <tr><th>Setup</th><th class="n">Accuracy</th><th class="n">Faithful</th><th class="n">Cost / question</th></tr>
-  <tr><td>gpt-5.4-mini, low reasoning (Week 7)</td><td class="n">92.7%</td><td class="n">96.8%</td><td class="n">$0.00155</td></tr>
-  <tr><td>gpt-5.4-nano, low</td><td class="n">86.8%</td><td class="n">95.2%</td><td class="n">$0.00037</td></tr>
-  <tr><td>gpt-5.4-nano, medium</td><td class="n">88.2%</td><td class="n">94.7%</td><td class="n">$0.00043</td></tr>
-  <tr><td>gpt-5.4-nano, high</td><td class="n">90.9%</td><td class="n">94.9%</td><td class="n">$0.00049</td></tr>
-  <tr><td>nano, high + worked examples in the prompt</td><td class="n">89.6%</td><td class="n">93.6%</td><td class="n">$0.00046</td></tr>
-  <tr class="best"><td>nano, high + newest dated source first (final)</td><td class="n">90.8%</td><td class="n">96.2%</td><td class="n">$0.00048</td></tr>
-</table>
-</div>
-<div class="key"><b>Result: cost per question −69% ($0.00155 → $0.00048) for −1.9 accuracy points</b> (92.7% → 90.8%; ranges 92.0–93.2 vs 90.4–91.2).
-p95 latency is unchanged (7.0 s → 7.6 s on a laptop).</div>
+  <text x="380" y="12" font-size="11" font-weight="600" fill="#1b2a47">Accuracy (%)</text>
+  <g font-size="10" fill="#1b2a47">
+    <text x="476" y="42" text-anchor="end">Before (mini)</text>
+    <text x="476" y="82" text-anchor="end" font-weight="600">After (nano)</text>
+  </g>
+  <line x1="484" y1="24" x2="484" y2="96" stroke="#c9d3cd"/>
+  <rect x="484" y="29" width="157" height="20" rx="3" fill="#a9c1b6"/>
+  <rect x="484" y="69" width="154" height="20" rx="3" fill="#2f6b4f"/>
+  <g font-size="10" fill="#1b2a47"><text x="646" y="43">92.7</text><text x="643" y="83" font-weight="600">90.8</text></g>
+  <text x="484" y="110" font-size="9" fill="#5d6779">Both axes start at 0.</text>
+</svg>
+<figcaption>Figure 3. Target: −50% cost or p95 latency with at most 2 points of accuracy lost. Mean of 3 runs on the same 125 questions.</figcaption>
+</figure>
+<div class="key"><b>Cost −69% for −1.9 accuracy points.</b> We replaced gpt-5.4-mini with gpt-5.4-nano at high reasoning effort,
+and show dated sources newest first.</div>
 <ul>
-  <li><b>Smaller model + more reasoning.</b> Nano at low effort misreads numbers (−5.9 points). Its output tokens are 3.6× cheaper, so high effort recovers most of the loss and stays cheap.</li>
-  <li><b>Newest source first</b> gives the same accuracy but brings faithfulness and citations back near the Week 7 level.</li>
-  <li><b>Prompt caching: no saving.</b> Our fixed prompt (385 tokens) is under OpenAI's 1,024-token minimum. Padded to 1,156 tokens, mini cached it but nano did not, and the examples lowered accuracy.</li>
-  <li><b>Repeated questions</b> are answered from a cache in the service, with no search and no model call.</li>
-  <li><b>Latency −50% was not reachable.</b> The answer step alone takes 3.4 s at p95. Faster rerankers lost too much recall (MiniLM: −16 points, English only);
-  jina-v2 cut search p95 by 22%, and skipping the reranker when BM25 and vector search agree skipped 30% of questions without moving p95.</li>
-  <li><b>Regression:</b> nano answers the German blocked-account question in French (q043) with an outdated figure in all 3 runs, while mini was always right.</li>
+  <li><b>Tried and rejected:</b> nano at low effort (−5.9 points); worked examples in the prompt (−1.3 more); prompt caching (our prompt is under OpenAI's 1,024-token minimum, and nano didn't cache).</li>
+  <li><b>Latency could not be halved:</b> the answer step alone takes 3.4 s at p95, and faster rerankers lost 7–16 points of recall.</li>
 </ul>
 
-<h2>6. Known failure cases and cost model</h2>
-<table>
-  <tr><th>Failure case</th><th>Effect</th></tr>
-  <tr><td>Cross-lingual questions</td><td>Main cause of wrong "I don't know" answers; no query translation yet</td></tr>
-  <tr><td>Outdated documents still online (2020 embassy PDF)</td><td>Handled by the newest-source rule when both are retrieved; 201 documents have no date</td></tr>
-  <tr><td>Table-heavy and screenshot PDFs</td><td>Dates read from the wrong column (q013); little extractable text</td></tr>
-  <tr><td>Erasmus Mundus catalogue (programme names only)</td><td>Programme details are on university sites outside the corpus, so the answer is "I don't know"</td></tr>
-  <tr><td>Vague or multi-part questions</td><td>No question rewriting; the web app does not apply country filters</td></tr>
-  <tr><td>Shared cloud CPUs</td><td>12–22 s per answer online (reranker), vs ≈4 s on a laptop</td></tr>
-</table>
-<div class="avoid">
-<table>
-  <tr><th>Model cost</th><th class="n">Per question</th><th class="n">1,000 q</th><th class="n">100× (100,000 q)</th></tr>
-  <tr><td>Week 7 (mini)</td><td class="n">$0.00155</td><td class="n">$1.55</td><td class="n">$155</td></tr>
-  <tr class="best"><td>Final (nano)</td><td class="n">$0.00048</td><td class="n">$0.48</td><td class="n">$48</td></tr>
-</table>
-<p class="small">Search runs locally (no per-query cost). Hosting runs on Modal's free tier; at 100× traffic one 4-vCPU container would not keep up,
-and compute (more containers or a GPU for the reranker) would become the main cost, not the model.</p>
-</div>
+<h2>5. Limitations and cost</h2>
+<ul>
+  <li><b>Cross-lingual misses:</b> a French question whose answer is only on an English page causes most wrong "I don't know" answers.</li>
+  <li><b>Outdated sources:</b> handled by dates, but 201 of 281 documents have no date, and nano still picks the old German blocked-account figure in French.</li>
+  <li><b>Online latency:</b> 12–22 s on Modal's free CPUs (reranker) vs ≈4 s on a laptop.</li>
+  <li><b>Cost model:</b> $0.48 per 1,000 questions, $48 at 100× (100,000). At that scale, hosting becomes the main cost.</li>
+</ul>
 
 </body>
 </html>
